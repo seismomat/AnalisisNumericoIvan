@@ -10,18 +10,62 @@ from scipy.linalg import lu
 A=np.array([[1,2,3],[2,3,1],[-2,3,-2]])
 
 
+import numpy as np
+
+import numpy as np
+
 def LU(A):
-  U=np.copy(A)
-  L=np.eye(A.shape[0])
-  L1=np.eye(A.shape[0])
-  for k in range(A.shape[0]):
-    L=np.eye(A.shape[0])
-    for i in range(k+1,A.shape[0]):
-      L[i,k]=-U[i,k]/U[k,k]
-    U=L@U
-    L1=L1@L
-    #L1=2*np.eye(A.shape[0])-L1
-  return L1,U
+    """
+    Realiza la descomposición LU de una matriz cuadrada A.
+
+    La descomposición LU descompone una matriz A en el producto de una matriz triangular inferior L y una matriz triangular superior U, tales que A = L * U.
+
+    Parámetros:
+    ----------
+    A : numpy.ndarray
+        Matriz cuadrada de tamaño n x n.
+
+    Retorna:
+    -------
+    L : numpy.ndarray
+        Matriz triangular inferior L de tamaño n x n, con 1s en la diagonal principal.
+    U : numpy.ndarray
+        Matriz triangular superior U de tamaño n x n.
+
+    Ejemplo:
+    --------
+    >>> A = np.array([[4, 3], [6, 3]])
+    >>> L, U = LU(A)
+    >>> print("L:", L)
+    >>> print("U:", U)
+    L: [[ 1.   0. ]
+        [ 1.5  1. ]]
+    U: [[4.  3. ]
+        [0.  -1.5]]
+
+    Notas:
+    ------
+    - Esta implementación no incluye pivoteo, por lo que es necesario que A no tenga ceros en su diagonal principal para evitar divisiones por cero.
+    - El algoritmo modifica la matriz U en cada iteración para ir obteniendo la matriz triangular superior.
+    - La matriz L se construye como el producto acumulado de las matrices de eliminación en cada paso.
+
+    """
+
+    U = np.copy(A)
+    L = np.eye(A.shape[0])
+    L1 = np.eye(A.shape[0])
+
+    for k in range(A.shape[0]):
+        L = np.eye(A.shape[0])
+        for i in range(k + 1, A.shape[0]):
+            L[i, k] = -U[i, k] / U[k, k]
+        U = L @ U
+        L1 = L1 @ L
+
+    L1 = 2 * np.eye(A.shape[0]) - L1
+    return L1, U
+
+
 
 def factorizacionLU(A):
     # dimension de la matriz
