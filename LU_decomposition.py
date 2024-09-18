@@ -9,7 +9,7 @@ from numpy import linalg as LA
 from scipy.linalg import lu
 A=np.array([[1,2,3],[2,3,1],[-2,3,-2]])
 
-
+A=np.array([[2,1,1],[4,-6,0],[-2,7,2]])
 import numpy as np
 
 import numpy as np
