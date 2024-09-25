@@ -88,17 +88,19 @@ def factorizacionLU(A):
                 U[j][k] = U[j][k] - factor*U[i][k]
     return L,U
 L,U=LU(A)
-#L,U=factorizacionLU(A)
+L,U=factorizacionLU(A)
 print("Matriz L")
 print(L)
 print("Matriz U")
 print(U)
 
-print("comprobacion")
-print("Matriz LU")
-print(L@U)
-print("Matriz A")
-print(A)
+# print("comprobacion")
+# print("Matriz LU")
+# print(L@U)
+# print("Matriz A")
+# print(A)
+
+
 """# Descomposición LU
 P, L, U = lu(A)
 
