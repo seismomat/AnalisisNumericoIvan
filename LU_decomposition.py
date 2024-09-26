@@ -87,12 +87,14 @@ def factorizacionLU(A):
             for k in range(i,n):
                 U[j][k] = U[j][k] - factor*U[i][k]
     return L,U
-L,U=LU(A)
-L,U=factorizacionLU(A)
-print("Matriz L")
-print(L)
-print("Matriz U")
-print(U)
+
+
+# L,U=LU(A)
+# L,U=factorizacionLU(A)
+# print("Matriz L")
+# print(L)
+# print("Matriz U")
+# print(U)
 
 # print("comprobacion")
 # print("Matriz LU")

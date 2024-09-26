@@ -192,12 +192,12 @@ def Solve(A, b):
 
     
     
-b = np.array([1.0,1.0,1.0])
-A=np.array([[2,1,1],[4,-6,0],[-2,7,2]])
-SOl=Solve(A,b)
+# b = np.array([1.0,1.0,1.0])
+# A=np.array([[2,1,1],[4,-6,0],[-2,7,2]])
+# SOl=Solve(A,b)
 
-print("Solución de Ax = b")
-print(SOl)
+# print("Solución de Ax = b")
+# print(SOl)
 
-print("Solución de Ax = b con numpy")
-print(LA.solve(A,b))
+# print("Solución de Ax = b con numpy")
+# print(LA.solve(A,b))

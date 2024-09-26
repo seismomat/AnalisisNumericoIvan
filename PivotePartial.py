@@ -6,7 +6,9 @@ Created on Wed Sep 25 14:56:22 2024
 """
 
 import numpy as np
+from numpy import linalg as LA
 from LU_decomposition import LU
+from SolverLU import Solve 
 
 A=np.array([[1.0,2.0,4.0],[2.0,1.0,3.0],[3.0,2.0,4.0]])
 b=np.array([1.,2.,3.])
@@ -28,15 +30,18 @@ def PartialPivot(A,b):
 
 Ps,A_g,b_g=PartialPivot(A,b)
 L,U=LU(A_g)
-print("Matriz A gorro")
-print(A_g)
-print("Matriz b gorro")
-print(b_g)
 print("Matriz L")
 print(L)
 print("Matriz U")
 print(U)
-
-print("comprobacion")
-print("Matriz LU")
-print(L@U)
+x=Solve(A_g,b_g)
+print("A gorro")
+print(A_g)
+print("b gorro")
+print(b_g)
+print("Solucion")
+print(x)
+print("Solucion numpy")
+print(LA.solve(A_g,b_g))
+print("Solucion original")
+print(LA.solve(A,b))
