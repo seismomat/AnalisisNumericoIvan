@@ -1,15 +1,17 @@
 # -*- coding: utf-8 -*-
 """
-Created on Wed Aug 21 15:09:41 2024
+Created on Wed Oct  9 15:33:37 2024
 
 @author: jcossc
 """
-
 import numpy as np
+from numpy import linalg as LA
+from LU_decomposition import LU as LUU
+from SolverLU import Solve 
 
 A=np.array([[1.0,2.0,4.0],[2.0,1.0,3.0],[3.0,2.0,4.0]])
-
-A=np.array([[2,1,1],[4,-6,0],[-2,7,2]])
+#A=np.array([[2.0,1.0,1.0],[4.0,-6.0,0.0],[-2.0,7.0,2.0]])
+b=np.array([1.,2.,3.])
 
 def LU_PartialPivot(A):
     """
@@ -88,13 +90,10 @@ def LU_PartialPivot(A):
 
 L,U,LL=LU_PartialPivot(A)
 
-print("Matriz L")
-print(L)
-print("Matriz U")
-print(U)
+from scipy.linalg import lu
+P1, L1, U1 = lu(A)
 
-print("comprobacion")
-print("Matriz LU")
-print(L@U)
-print("Matriz A")
-print(A)
+# y=LA.solve(L1,b_g)
+# solAna=LA.solve(U1,y)
+# print("Solucion Analitica")
+# print(solAna)

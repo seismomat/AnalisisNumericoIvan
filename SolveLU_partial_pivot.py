@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 """
-Created on Wed Sep 25 14:56:22 2024
+Created on Wed Oct  9 15:21:00 2024
 
 @author: jcossc
 """
@@ -11,7 +11,7 @@ from LU_decomposition import LU as LUU
 from SolverLU import Solve 
 
 A=np.array([[1.0,2.0,4.0],[2.0,1.0,3.0],[3.0,2.0,4.0]])
-#A=np.array([[2.0,1.0,1.0],[4.0,-6.0,0.0],[-2.0,7.0,2.0]])
+A=np.array([[2.0,1.0,1.0],[4.0,-6.0,0.0],[-2.0,7.0,2.0]])
 b=np.array([1.,2.,3.])
 
 def PartialPivot(A,b):
@@ -29,31 +29,24 @@ def PartialPivot(A,b):
 
     return Ps,U,b
 
+def Solver_LU_Pivot_Partial(A,b):
+    Ps,A_g,b_g=PartialPivot(A,b)
+    x=Solve(A_g,b_g)
+    Ps=Ps[::-1]
+    
+    for i in range(len(Ps)):
+        x=Ps[i]@x
+        
+    return x,b_g
+
+sol,b_g=Solver_LU_Pivot_Partial(A,b)
+print("Solucion")
+print(sol)
+
 from scipy.linalg import lu
 P1, L1, U1 = lu(A)
-print("Matriz L1")
-print(L1)
-print("Matriz U1")
-print(U1)
-print("Matriz P1")
-print(P1)
 
-Ps,A_g,b_g=PartialPivot(A,b)
-L,U=LUU(A_g)
-print("Matriz L")
-print(L)
-print("Matriz U")
-print(U)
-print("Matriz A")
-print(L@U)
-x=Solve(A_g,b_g)
-print("A gorro")
-print(A_g)
-print("b gorro")
-print(b_g)
-print("Solucion")
-print(x)
-print("Solucion numpy")
-print(LA.solve(A_g,b_g))
-print("Solucion original")
-print(LA.solve(A,b))
+y=LA.solve(L1,b_g)
+solAna=LA.solve(U1,y)
+print("Solucion Analitica")
+print(solAna)
