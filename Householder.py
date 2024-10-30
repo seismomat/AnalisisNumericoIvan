@@ -40,7 +40,6 @@ def Householder(A):
 
     H=np.eye(len(A))-2*vi@vi.T
     A=H@A
-    A=np.round(A)
     Q=Q@H
 
   return Q,A
