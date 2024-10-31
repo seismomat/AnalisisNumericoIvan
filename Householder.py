@@ -1,9 +1,3 @@
-# -*- coding: utf-8 -*-
-"""
-Created on Wed Oct 30 11:26:52 2024
-
-@author: jcossc
-"""
 import numpy as np
 from numpy import linalg as LA
 #A=np.array([[-1.,-1.,1.],[1.,3.,3.],[-1.,-1.,5.]])
