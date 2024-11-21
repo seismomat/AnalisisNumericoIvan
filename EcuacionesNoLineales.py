@@ -95,14 +95,48 @@ def Secante(f, Tol, N, x0, x1):
         if (abs(f(xn)) <= Tol and abs(x0-x1) <= Tol):
             return xn
         #se actualizan los valores
+        #print(x0,x1)
         x0 = x1
         x1 = xn
+        
         #incremento en las iteraciones
         n+=1
 
     else:
         print("El valor aproximado de tu raiz es "+str(x1))
-        
+
+def Secante1(f,Tol,N,a,b):
+  #N es el numero de iteraciones
+  # Tol es la tolerancia
+  # f es la función a la cual se le quiere
+  # obtener las raíces
+  # a es el extremo izquierdo del intervalo
+  # b es el extremo derecho del intervalo
+
+    fa,fb=f(a),f(b)
+    if fa*fb>0.0:
+        print("No tiene raíces en el intervalo")
+
+    Iter=0
+    x0=a
+    while Iter<=N:
+        fa,fb=f(a),f(b)
+        x1=b-(fb*(b-a)/(fb-fa))
+        fx1=f(x1)
+        if abs(fx1)<=Tol and abs(x1-x0)<=Tol:
+            print("Tu raiz es "+str(x1))
+            return x1
+
+        if fa*fx1<0:
+            b=x1
+        if fx1*fb<0:
+            a=x1
+        x0=x1
+
+        Iter+=1
+
+    else:
+        print("El valor aproximado de tu raiz es"+str(x1))
 def Newton(f,df,Tol,N,x0):
   Iter=0
 
@@ -141,6 +175,7 @@ df= lambda x:2*x
 Biseccion(1E-4,100,f,0.5,1.5)
 ReglaFalsa(1E-4,100,f,0.5,1.5)
 Secante(f,0.001,20,0.5,1.5)
+Secante1(f,0.001,20,0.5,1.5)
 Newton(f,df,1E-5,100,1.)
 
 f= lambda x: np.cos(x)-x+1
