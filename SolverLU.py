@@ -201,3 +201,6 @@ def Solve(A, b):
 
 # print("Solución de Ax = b con numpy")
 # print(LA.solve(A,b))
+
+A=np.array([[4,12,-16],[12,37,-43],[-16,-43,98]])
+L, U = LU(A)
