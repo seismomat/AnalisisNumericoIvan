@@ -11,7 +11,7 @@ from LU_decomposition import LU as LUU
 from SolverLU import Solve 
 
 A=np.array([[1.0,2.0,4.0],[2.0,1.0,3.0],[3.0,2.0,4.0]])
-#A=np.array([[2.0,1.0,1.0],[4.0,-6.0,0.0],[-2.0,7.0,2.0]])
+A=np.array([[2.0,1.0,1.0],[4.0,-6.0,0.0],[-2.0,7.0,2.0]])
 b=np.array([1.,2.,3.])
 
 def PartialPivot(A,b):
