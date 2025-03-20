@@ -5,6 +5,9 @@ Created on Wed Sep 25 14:56:22 2024
 @author: jcossc
 """
 
+### este es el chido 
+
+
 import numpy as np
 from numpy import linalg as LA
 from LU_decomposition import LU as LUU
@@ -17,19 +20,17 @@ b=np.array([1.,2.,3.])
 def PartialPivot(A,b):
     U=np.copy(A)
     x=np.copy(b)
-    Ps=[]
+    P=np.eye(U.shape[0])
     for j in range(U.shape[0]):
-        P=np.eye(U.shape[0])
+        #P=np.eye(U.shape[0])
         k=np.argmax(np.abs(U[j:,j]))+j
         U[[j,k]]=U[[k,j]]
         P[[j,k]]=P[[k,j]]
-        b[[j,k]]=b[[k,j]]
+        x[[j,k]]=x[[k,j]]
    
-        Ps.append(P)
+    return P,U,x
 
-    return Ps,U,b
-
-from scipy.linalg import lu
+"""from scipy.linalg import lu
 P1, L1, U1 = lu(A)
 print("Matriz L1")
 print(L1)
@@ -56,4 +57,4 @@ print(x)
 print("Solucion numpy")
 print(LA.solve(A_g,b_g))
 print("Solucion original")
-print(LA.solve(A,b))
+print(LA.solve(A,b))"""
