@@ -38,8 +38,6 @@ sol=Solver_LU_Pivot_Partial(A,b)
 print("Solucion")
 print(sol)
 
-from scipy.linalg import lu
-P1, L1, U1 = lu(A)
 
 y=LA.solve(A,b)
 print("Solucion Analitica")
