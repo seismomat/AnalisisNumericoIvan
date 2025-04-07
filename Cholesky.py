@@ -7,6 +7,7 @@ Created on Tue Oct 22 17:39:24 2024
 import numpy as np
 
 A = np.array([[6.0,15.0,55.0],[15.0,55.0,225.0],[55.0,225.0,979.0]])
+b=np.array([1.,2.,3.])
 
 def Cholesky(A):
     n=A.shape[0]
