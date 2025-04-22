@@ -20,7 +20,7 @@ def gen_data(n):
     for i in range(n):
         y[i] = f(x[i]+eps**random.randint(0,10))
 
-    return x, 
+    return x, y
 
 def Cholesky(A):
     n=A.shape[0]
