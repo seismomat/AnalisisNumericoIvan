@@ -11,17 +11,16 @@ import matplotlib.pyplot as plt
 import numpy as np
 from numpy import linalg as la
 
-def gen_data(n, bias, varianza):
-    x = []
-    y = []
-    z = []
-    for i in range(0, n):
-        x.append(i)
-        y.append((i + bias) + random.uniform(0, 1) * varianza)
-        z.append((i + varianza) + random.uniform(0, 1) * bias)
-        
-    x=np.array(x); y=np.array(y); z=np.array(z)
-    return x, y, z
+f=lambda x: 2*x+ 1
+
+def gen_data(n):
+    x = np.linspace(0,1,n)
+    y = np.zeros_like(x)
+    eps=1E-1
+    for i in range(n):
+        y[i] = f(x[i]+eps**random.randint(0,10))
+
+    return x, y
 
 def Cholesky(A):
     n=A.shape[0]
@@ -68,11 +67,11 @@ def SustAtras(U, y):
     return x
 
 def EcNormal():
-    x,y,fxy = gen_data(20, 0, 2)
-    A=np.zeros((len(fxy),2))
+    x,y = gen_data(20)
+    A=np.zeros((len(y),2))
     A[:,0]=1.0
-    A[:,1]=y
-    b=fxy
+    A[:,1]=x
+    b=y
     
     AtA=A.T@A
     Atb=A.T@b
@@ -82,10 +81,10 @@ def EcNormal():
     
     ySol = SustDelante(L, Atb)
     Params = SustAtras(Lt, ySol)
-    z=Params[0]+Params[1]*y
+    z=Params[0]+Params[1]*x
     
-    plt.plot(y,fxy,'ro')
-    plt.plot(y,z,'black')
+    plt.plot(x,y,'ro')
+    plt.plot(x,z,'black')
     plt.show()
     
     return x
